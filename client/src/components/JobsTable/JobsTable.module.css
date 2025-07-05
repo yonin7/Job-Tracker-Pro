@@ -1,0 +1,77 @@
+/* src/components/JobsTable.module.css */
+.tableContainer {
+  overflow-x: auto;
+  margin-top: 20px;
+  /* לרוב אין צורך לשנות text-align על ה-container של הטבלה, אלא על התאים עצמם */
+}
+
+.jobsTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.jobsTable th,
+.jobsTable td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left; /* ברירת מחדל: שמאל */
+}
+
+/* יישור תאי הטבלה לימין עבור עברית */
+[dir="rtl"] .jobsTable th,
+[dir="rtl"] .jobsTable td {
+  text-align: right;
+}
+
+.jobsTable th {
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.jobsTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.jobsTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+.jobsTable button {
+  padding: 8px 12px;
+  margin-right: 5px; /* מרווח בין כפתורים: מימין */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+/* שינוי מרווח בין כפתורי הטבלה בעברית */
+[dir="rtl"] .jobsTable button {
+  margin-right: 0;
+  margin-left: 5px; /* מרווח בין כפתורים: משמאל */
+}
+
+.jobsTable button:first-of-type {
+  /* edit */
+  background-color: #007bff;
+  color: white;
+}
+
+.jobsTable button:first-of-type:hover {
+  background-color: #0056b3;
+}
+
+.jobsTable button:last-of-type {
+  /* delete */
+  background-color: #dc3545;
+  color: white;
+}
+
+.jobsTable button:last-of-type:hover {
+  background-color: #c82333;
+}

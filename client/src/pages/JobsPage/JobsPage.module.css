@@ -1,0 +1,76 @@
+/* src/pages/JobsPage.module.css */
+.loadingMessage,
+.errorMessage {
+  font-size: 1.2em;
+  margin-top: 20px;
+  text-align: center; /* ברירת מחדל: מרכז */
+}
+
+[dir="rtl"] .loadingMessage,
+[dir="rtl"] .errorMessage {
+  text-align: right; /* יישור לימין עבור עברית */
+}
+
+.errorMessage {
+  color: red;
+}
+
+.addJobButton {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+  /* הכפתור עצמו מיושר כברירת מחדל לפי ה-flow, נניח שהוא בצד שמאל */
+  /* כדי למרכז אותו או ליישר לימין, תצטרך לצרף אותו לדיב חיצוני שאתה שולט עליו */
+}
+
+/* לדוגמה, אם כפתור הוספה נמצא ב-div חיצוני שאתה רוצה ליישר: */
+/* [dir="rtl"] .jobsPageContainer { /* אם יש container לכל העמוד */
+/* text-align: right; */
+/* } */
+
+.formModal {
+  position: fixed;
+  top: 0;
+  left: 0; /* ברירת מחדל: שמאל */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* ב-RTL, המודאל אמור להתמרכז אוטומטית כי הוא Flexbox עם justify-content: center,
+   אבל אם היו positioning אחרים, היית משנה: */
+/* [dir="rtl"] .formModal {
+   left: auto;
+   right: 0;
+} */
+
+.formModal .closeFormButton {
+  background-color: #f44336;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+  /* אם יש צורך ליישר כפתור זה: */
+  /* float: right; */
+}
+
+/* התאמת מיקום כפתור סגירה בעברית */
+[dir="rtl"] .formModal .closeFormButton {
+  /* אם הכפתור מוצג כ-block וממוקם בתוך ה-jobForm, יישור הטקסט של הטופס יטפל בזה */
+  /* אם הוא צף, צריך לשנות את ה-float */
+  /* float: left; */
+}

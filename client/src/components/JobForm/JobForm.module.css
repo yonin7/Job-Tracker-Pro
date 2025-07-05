@@ -1,0 +1,84 @@
+/* src/components/JobForm.module.css */
+.jobForm {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+}
+
+.jobForm h2 {
+  text-align: center; /* ברירת מחדל: מרכז */
+  margin-bottom: 25px;
+  color: #333;
+}
+
+/* יישור כותרת הטופס לימין בעברית */
+[dir="rtl"] .jobForm h2 {
+  text-align: right;
+}
+
+/* סגנונות עבור FormGroup בתוך JobForm */
+.formGroup {
+  margin-bottom: 15px;
+  text-align: left; /* ברירת מחדל: שמאל */
+}
+
+/* יישור FormGroup לימין בעברית */
+[dir="rtl"] .formGroup {
+  text-align: right;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+.formGroup input[type="text"],
+.formGroup input[type="url"],
+.formGroup input[type="date"],
+.formGroup select,
+.formGroup textarea {
+  width: calc(100% - 24px);
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+  /* text-align: left;  השדות עצמם יכולים להיות מיושרים לפי הכיווניות של ה-dir */
+}
+
+/* אם רוצים לוודא יישור טקסט בשדות הקלט עצמם בעברית */
+[dir="rtl"] .formGroup input[type="text"],
+[dir="rtl"] .formGroup input[type="url"],
+[dir="rtl"] .formGroup input[type="date"],
+[dir="rtl"] .formGroup select,
+[dir="rtl"] .formGroup textarea {
+  text-align: right;
+}
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.jobForm button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.jobForm button[type="submit"]:hover {
+  background-color: #0056b3;
+}

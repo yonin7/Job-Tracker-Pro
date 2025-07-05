@@ -1,0 +1,52 @@
+/* src/layouts/MainLayout.module.css */
+
+.appContainer {
+  text-align: center; /* ברירת מחדל: מרכז */
+  padding: 20px;
+}
+
+/* כאשר הכיווניות היא RTL, יישר את הכותרות לימין */
+[dir="rtl"] .appContainer h1 {
+  text-align: right;
+}
+
+/* כאשר הכיווניות היא RTL, יישר את הככותרת הכללית לימין */
+[dir="rtl"] h1 {
+  text-align: right;
+}
+
+.languageButtons {
+  margin-bottom: 20px;
+  /* אם יש צורך ליישר את הכפתורים עצמם, למשל למרכז או לצד אחד */
+  /* text-align: center;  */
+}
+
+[dir="rtl"] .languageButtons {
+  /* אם תרצה שהכפתורים עצמם יהיו מיושרים לימין */
+  /* text-align: right; */
+}
+
+.languageButtons button {
+  margin-right: 5px;
+  padding: 8px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* התאמת מרווחים (margins) לכפתורים בעברית */
+[dir="rtl"] .languageButtons button {
+  margin-right: 0;
+  margin-left: 5px; /* הכפתורים יהיו עם מרווח משמאלם */
+}
+
+.languageButtons button:hover {
+  background-color: #e0e0e0;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+}

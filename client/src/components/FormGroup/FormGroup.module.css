@@ -1,0 +1,22 @@
+/* src/components/FormGroup.module.css */
+.formGroup {
+  margin-bottom: 15px;
+  text-align: left; /* ברירת מחדל: שמאל. זה יכול להיות מיושר גם על ידי ההורה */
+}
+
+/* יישור הטקסט בתוך ה-FormGroup עצמו */
+[dir="rtl"] .formGroup {
+  text-align: right;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* אם ה-label עצמו צריך יישור נפרד, אבל לרוב ה-text-align של ה-div האב מספיק */
+/* [dir="rtl"] .formGroup label {
+  text-align: right;
+} */

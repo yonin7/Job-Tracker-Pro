@@ -1,0 +1,18 @@
+services:
+  db:
+    image: postgres:16-alpine # נשתמש בגרסה 16 של פוסטגרס, גרסה קלה יותר (alpine)
+    restart: always # הקונטיינר יופעל מחדש אוטומטית אם הוא קורס
+    env_file: # נשתמש בקובץ סביבה כדי לשמור פרטי גישה רגישים
+      - .env.db
+    ports: # ממפים את פורט 5432 של הקונטיינר לפורט 5432 של המחשב המארח
+      - "5432:5432"
+    volumes: # שומרים את הנתונים בנפח קבוע כדי שלא ילכו לאיבוד כשמכבים את הקונטיינר
+      - db_data:/var/lib/postgresql/data
+    healthcheck: # בדיקת תקינות לוודא שמסד הנתונים מוכן לקבל חיבורים
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db_data: # הגדרת הנפח הקבוע
