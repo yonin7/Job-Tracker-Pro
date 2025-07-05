@@ -1,42 +1,49 @@
-// src/services/jobs.service.ts
-import axios from "axios";
-import type { Job } from "../interfaces/job.interface";
-import type { CreateJobDto } from "../interfaces/dto/create-job.dto"; // נוסיף את זה שוב, כי אנחנו משתמשים בו
+// client/src/services/jobs.service.ts
+import api from "./api.service"; // שינוי: ייבוא api במקום axios
+import { IJob } from "../interfaces/job.interface";
+import { CreateJobDto } from "../interfaces/dto/create-job.dto";
 
-const API_URL = "http://localhost:3000/jobs";
+const JOBS_API_URL = "/jobs"; // כתובת ה-API הבסיסית למשרות (כעת יחסית ל-baseURL ב-api.service)
 
-export const jobsService = {
-  // פונקציה לקבלת כל המשרות
-  getJobs: async (): Promise<Job[]> => {
-    const response = await axios.get<Job[]>(API_URL);
-    return response.data;
-  },
+class JobsService {
+  async getAllJobs(): Promise<IJob[]> {
+    try {
+      const response = await api.get<IJob[]>(JOBS_API_URL); // שינוי: שימוש ב-api
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching jobs:", error);
+      throw error;
+    }
+  }
 
-  // פונקציה לקבלת משרה לפי ID
-  getJobById: async (id: string): Promise<Job> => {
-    const response = await axios.get<Job>(`${API_URL}/${id}`); // שימו לב כאן לתיקון!
-    return response.data;
-  },
+  async createJob(jobData: CreateJobDto): Promise<IJob> {
+    try {
+      const response = await api.post<IJob>(JOBS_API_URL, jobData); // שינוי
+      return response.data;
+    } catch (error) {
+      console.error("Error creating job:", error);
+      throw error;
+    }
+  }
 
-  // פונקציה ליצירת משרה חדשה
-  createJob: async (newJob: CreateJobDto): Promise<Job> => {
-    // השתמש ב-CreateJobDto
-    const response = await axios.post<Job>(API_URL, newJob);
-    return response.data;
-  },
+  async updateJob(id: number, jobData: CreateJobDto): Promise<IJob> {
+    try {
+      const response = await api.patch<IJob>(`${JOBS_API_URL}/${id}`, jobData); // שינוי
+      return response.data;
+    } catch (error) {
+      console.error("Error updating job:", error);
+      throw error;
+    }
+  }
 
-  // פונקציה לעדכון משרה
-  updateJob: async (
-    id: string,
-    updatedFields: Partial<CreateJobDto>
-  ): Promise<Job> => {
-    // השתמש ב-Partial<CreateJobDto>
-    const response = await axios.patch<Job>(`${API_URL}/${id}`, updatedFields); // שימו לב כאן לתיקון!
-    return response.data;
-  },
+  async deleteJob(id: number): Promise<void> {
+    try {
+      await api.delete(`${JOBS_API_URL}/${id}`); // שינוי
+    } catch (error) {
+      console.error("Error deleting job:", error);
+      throw error;
+    }
+  }
+}
 
-  // פונקציה למחיקת משרה
-  deleteJob: async (id: string): Promise<void> => {
-    await axios.delete<void>(`${API_URL}/${id}`); // שימו לב כאן לתיקון!
-  },
-};
+export default new JobsService();

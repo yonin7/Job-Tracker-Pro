@@ -1,11 +1,18 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
+// client/src/main.tsx
+import React from "react";
+import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
-import "./i18n/i18n.ts";
+import "./index.css";
+import { BrowserRouter } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext.tsx";
+import "./i18n/i18n.ts"; // <-- חשוב מאוד להשאיר את השורה הזו!
 
-createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </BrowserRouter>
+  </React.StrictMode>
 );
